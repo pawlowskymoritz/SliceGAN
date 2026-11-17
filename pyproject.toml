@@ -1,0 +1,32 @@
+[project]
+name = "micrographs-to-microstructures"
+version = "1.1.0"
+description = "SliceGAN: generate 3D microstructures from 2D micrographs"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "torch>=2.1",
+    "numpy",
+    "matplotlib",
+    "tifffile",
+    "wandb",
+]
+
+[project.optional-dependencies]
+# make_animations.py (plotoptix needs an NVIDIA GPU on Windows/Linux)
+animations = [
+    "plotoptix",
+    "moviepy<2",   # make_animations.py uses moviepy.editor, removed in 2.0
+    "scipy",
+    "imageio",
+]
+# web/info_scraper.py
+web = [
+    "requests",
+    "beautifulsoup4",
+]
+
+[tool.uv]
+# Scripts are run from the repo root; no need to build/install the package itself.
+package = false
